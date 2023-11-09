@@ -1,4 +1,4 @@
-package tests.loginTests.posativeTests;
+package tests.loginTests.negativeTests;
 
 import com.github.javafaker.Faker;
 import org.openqa.selenium.By;
@@ -8,43 +8,35 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class PerformanceGlitchUser {
+public class ValidateLockedOutUserTest {
 
-    @Test(testName = "TestPerformanceGlitchUser", priority = 1)
-    public void  TestPerformanceGlitchUser() {
+    @Test(testName = "TestUsernameIncorrectPasswordIncorrect", priority = 1)
+    public void  TestUsernameIncorrectPasswordIncorrect(){
 // הגדרת הכרום כדפדפן
-      //  WebDriverManager.chromedriver().setup();
+        //WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get("https://www.saucedemo.com");
 
 //Login with the user standard_user
         WebElement usernameField = driver.findElement(By.id("user-name"));
-        usernameField.sendKeys("performance_glitch_user");
+        usernameField.sendKeys("locked_out_user");
 
 //Login with the password   secret_sauce
         WebElement passwordField = driver.findElement(By.id("password"));
         passwordField.sendKeys("secret_sauce");
 
-
         driver.findElement(By.cssSelector("[class=\"submit-button btn_action\"]")).click();
 
 
-        String currentUrl = driver.getCurrentUrl();
-        String Expected = "https://www.saucedemo.com/inventory.html";
+// Validate (using if-else statement) the text of the error message:
 
-        Assert.assertEquals(currentUrl,Expected);
-
-
-
-        String  productsTitle =driver.findElement(By.cssSelector("[class=\"title\"]")).getText();
-        String  expectedProductsTitlePage = "Products";
-
-        Assert.assertEquals(productsTitle,expectedProductsTitlePage);
-
+        String  errorbutton =driver.findElement(By.cssSelector("[class=\"error-message-container error\"]")).getText();
+        String expectedErrorButtonPage = "Epic sadface: Sorry, this user has been locked out.";
+        Assert.assertEquals(errorbutton ,expectedErrorButtonPage);
 
 
 
     }
-}
 
+}

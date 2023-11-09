@@ -1,17 +1,20 @@
 package tests.loginTests.negativeTests;
 
-import com.github.javafaker.Faker;
-import io.github.bonigarcia.wdm.WebDriverManager;
+//import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
-public class ValidateLockedOutUser {
+public class UsernameCorrectPasswordEmptyTest {
 
-    public static void main(String[] args) throws InterruptedException {
+    @Test(testName = "TestUsernameCorrectPasswordEmpty", priority = 1)
+    public void  TestUsernameCorrectPasswordEmpty(){
 
-        Faker fakeDataGenerator = new Faker();
+
+
 // הגדרת הכרום כדפדפן
         //WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver();
@@ -20,30 +23,27 @@ public class ValidateLockedOutUser {
 
 //Login with the user standard_user
         WebElement usernameField = driver.findElement(By.id("user-name"));
-        usernameField.sendKeys("locked_out_user");
+        usernameField.sendKeys("standard_user");
 
 //Login with the password   secret_sauce
         WebElement passwordField = driver.findElement(By.id("password"));
-        passwordField.sendKeys("secret_sauce");
+        passwordField.sendKeys("");
 
         driver.findElement(By.cssSelector("[class=\"submit-button btn_action\"]")).click();
 
 
-// Validate (using if-else statement) the text of the error message:
+        // Validate (using if-else statement) the text of the error message:
 
         String  errorbutton =driver.findElement(By.cssSelector("[class=\"error-message-container error\"]")).getText();
+        String expectedErrorButtonPage = "Epic sadface: Password is required" ;
 
-        String expectedErrorButtonPage = "Epic sadface: Sorry, this user has been locked out.";
-        System.out.println( expectedErrorButtonPage);
+            Assert.assertEquals(errorbutton,expectedErrorButtonPage);
 
-        if (errorbutton.equals(expectedErrorButtonPage)) {
-            System.out.println( expectedErrorButtonPage+" "+" the messages is correct  ");
-        }
-        else {
-            System.out.println(expectedErrorButtonPage+" "+"the messages is  not correct ");
-        }
+
 
 
     }
+
+
 
 }

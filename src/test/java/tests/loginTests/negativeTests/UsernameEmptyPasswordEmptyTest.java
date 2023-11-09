@@ -1,7 +1,5 @@
 package tests.loginTests.negativeTests;
 
-import com.github.javafaker.Faker;
-//import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,11 +7,10 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class UsernameCorrectPasswordEmpty {
+public class UsernameEmptyPasswordEmptyTest {
 
-    @Test(testName = "TestUsernameCorrectPasswordEmpty", priority = 1)
-    public void  TestUsernameCorrectPasswordEmpty(){
-
+    @Test(testName = "TestUsernameEmptyPasswordEmpty", priority = 1)
+    public void TestUsernameEmptyPasswordEmpty() {
 
 
 // הגדרת הכרום כדפדפן
@@ -24,7 +21,7 @@ public class UsernameCorrectPasswordEmpty {
 
 //Login with the user standard_user
         WebElement usernameField = driver.findElement(By.id("user-name"));
-        usernameField.sendKeys("standard_user");
+        usernameField.sendKeys("");
 
 //Login with the password   secret_sauce
         WebElement passwordField = driver.findElement(By.id("password"));
@@ -33,12 +30,10 @@ public class UsernameCorrectPasswordEmpty {
         driver.findElement(By.cssSelector("[class=\"submit-button btn_action\"]")).click();
 
 
-        // Validate (using if-else statement) the text of the error message:
-
         String  errorbutton =driver.findElement(By.cssSelector("[class=\"error-message-container error\"]")).getText();
-        String expectedErrorButtonPage = "Epic sadface: Password is required" ;
+        String exectedErrorButtonPage = "Epic sadface: Username is required";
 
-            Assert.assertEquals(errorbutton,expectedErrorButtonPage);
+        Assert.assertEquals(errorbutton,exectedErrorButtonPage);
 
 
 
@@ -48,3 +43,4 @@ public class UsernameCorrectPasswordEmpty {
 
 
 }
+

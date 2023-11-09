@@ -1,4 +1,4 @@
-package tests.loginTests.negativeTests;
+package tests.loginTests.posativeTests;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -7,11 +7,10 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class UsernameIncorrectPasswordCorrect {
+public class ProblemUserTest {
 
-
-    @Test(testName = "TestUsernameIncorrectPasswordCorrect", priority = 1)
-    public void TestUsernameIncorrectPasswordCorrect() {
+    @Test(testName = "TestProblemUser", priority = 1)
+    public void  TestProblemUser() {
 
 // הגדרת הכרום כדפדפן
         //WebDriverManager.chromedriver().setup();
@@ -21,25 +20,31 @@ public class UsernameIncorrectPasswordCorrect {
 
 //Login with the user standard_user
         WebElement usernameField = driver.findElement(By.id("user-name"));
-        usernameField.sendKeys("standard_user_incorect");
+        usernameField.sendKeys("problem_user");
 
 //Login with the password   secret_sauce
         WebElement passwordField = driver.findElement(By.id("password"));
         passwordField.sendKeys("secret_sauce");
 
+
         driver.findElement(By.cssSelector("[class=\"submit-button btn_action\"]")).click();
 
+        String currentUrl = driver.getCurrentUrl();
+        String Expected = "https://www.saucedemo.com/inventory.html";
 
-        // Validate (using if-else statement) the text of the error message:
+        Assert.assertEquals(currentUrl ,Expected);
 
-        String errorbutton = driver.findElement(By.cssSelector("[class=\"error-message-container error\"]")).getText();
-        String expectedErrorButtonPage = "Epic sadface: Username and password do not match any user in this service";
+        String  productsTitle =driver.findElement(By.cssSelector("[class=\"title\"]")).getText();
 
-        Assert.assertEquals(errorbutton, expectedErrorButtonPage);
+        String  expectedProductsTitlePage = "Products";
+        System.out.println(expectedProductsTitlePage);
+
+        Assert.assertEquals(productsTitle ,expectedProductsTitlePage);
 
 
 
     }
 }
+
 
 
