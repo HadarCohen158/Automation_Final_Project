@@ -1,19 +1,19 @@
 package tests.loginTests.negativeTests;
 
 import com.github.javafaker.Faker;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
-public class username_empty_password_empty {
+public class UsernameEmptyPasswordEmpty {
+
+    @Test(testName = "TestUsernameEmptyPasswordEmpty", priority = 1)
+    public void TestUsernameEmptyPasswordEmpty() {
 
 
-
-    public static void main(String[] args) throws InterruptedException {
-
-        Faker fakeDataGenerator = new Faker();
 // הגדרת הכרום כדפדפן
         //WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver();
@@ -31,19 +31,12 @@ public class username_empty_password_empty {
         driver.findElement(By.cssSelector("[class=\"submit-button btn_action\"]")).click();
 
 
-        // Validate (using if-else statement) the text of the error message:
-
         String  errorbutton =driver.findElement(By.cssSelector("[class=\"error-message-container error\"]")).getText();
-
         String exectedErrorButtonPage = "Epic sadface: Username is required";
-        System.out.println( exectedErrorButtonPage);
 
-        if (errorbutton.equals(exectedErrorButtonPage)) {
-            System.out.println(" the messages is correct  ");
-        }
-        else {
-            System.out.println("  the messages is  not correct ");
-        }
+        Assert.assertEquals(errorbutton,exectedErrorButtonPage);
+
+
 
 
     }

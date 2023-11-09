@@ -6,13 +6,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 public class ValidateStandardUserLogin {
 
+    @Test(testName = "TestValidateStandardUserLogin", priority = 1)
+    public void  TestValidateStandardUserLogin() {
 
-    public static void main(String[] args) throws InterruptedException {
-
-        Faker fakeDataGenerator = new Faker();
 // הגדרת הכרום כדפדפן
        // WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver();
@@ -30,31 +31,18 @@ public class ValidateStandardUserLogin {
 
         driver.findElement(By.cssSelector("[class=\"submit-button btn_action\"]")).click();
 
-
-        //url check
         String currentUrl = driver.getCurrentUrl();
-        System.out.println("currentUrl = " + currentUrl);
         String Expected = "https://www.saucedemo.com/inventory.html";
 
-        if (currentUrl.equals(Expected)) {
-            System.out.println("the url is currect");
-        } else {
-            System.out.println("the url is worng");
-        }
-
-//Validate (using if-else statement) the title of the page.
+        Assert.assertEquals(currentUrl,Expected);
 
         String  productsTitle =driver.findElement(By.cssSelector("[class=\"title\"]")).getText();
-
         String  expectedProductsTitlePage ="Products" ;
-        System.out.println(expectedProductsTitlePage);
 
-        if (productsTitle.equals(expectedProductsTitlePage)) {
-            System.out.println( expectedProductsTitlePage+" "+ "this is the correct message");
-        }
-        else {
-            System.out.println(expectedProductsTitlePage+" "+ "this is  not the correct message");
-        }
+        Assert.assertEquals(productsTitle,expectedProductsTitlePage);
+
+
+
 
 
     }

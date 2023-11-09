@@ -9,7 +9,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 
-public class LoginTest {
+public class SanityScenarioDivided {
 
     WebDriver driver = new ChromeDriver();
     String domain = "www.saucedemo.com";

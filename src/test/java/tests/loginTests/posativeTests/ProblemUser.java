@@ -1,17 +1,19 @@
 package tests.loginTests.posativeTests;
 
+import com.beust.ah.A;
 import com.github.javafaker.Faker;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
-public class problem_user {
+public class ProblemUser {
 
-    public static void main(String[] args) throws InterruptedException {
+    @Test(testName = "TestProblemUser", priority = 1)
+    public void  TestProblemUser() {
 
-        Faker fakeDataGenerator = new Faker();
 // הגדרת הכרום כדפדפן
         //WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver();
@@ -29,31 +31,17 @@ public class problem_user {
 
         driver.findElement(By.cssSelector("[class=\"submit-button btn_action\"]")).click();
 
-
-        //url check
         String currentUrl = driver.getCurrentUrl();
-        System.out.println("currentUrl = " + currentUrl);
         String Expected = "https://www.saucedemo.com/inventory.html";
 
-        if (currentUrl.equals(Expected)) {
-            System.out.println("the url is currect");
-        } else {
-            System.out.println("the url is worng");
-        }
-
-//Validate (using if-else statement) the title of the page.
+        Assert.assertEquals(currentUrl ,Expected);
 
         String  productsTitle =driver.findElement(By.cssSelector("[class=\"title\"]")).getText();
 
         String  expectedProductsTitlePage = "Products";
         System.out.println(expectedProductsTitlePage);
 
-        if (productsTitle.equals(expectedProductsTitlePage)) {
-            System.out.println(expectedProductsTitlePage + " " +" this is the correct massege ");
-        }
-        else {
-            System.out.println(expectedProductsTitlePage + " " +"this is  not the correct massege");
-        }
+        Assert.assertEquals(productsTitle ,expectedProductsTitlePage);
 
 
 
