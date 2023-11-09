@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 
-public class SanityScenario {
+public class SanityScenarioTest {
 
 
     public static void main(String[] args) throws InterruptedException {
