@@ -1,26 +1,24 @@
 package tests.loginTests.posativeTests;
 
 import com.github.javafaker.Faker;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class performance_glitch_user {
+public class ProblemUser {
 
     public static void main(String[] args) throws InterruptedException {
 
-        Faker fakeDataGenerator = new Faker();
 // הגדרת הכרום כדפדפן
-      //  WebDriverManager.chromedriver().setup();
+        //WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get("https://www.saucedemo.com");
 
 //Login with the user standard_user
         WebElement usernameField = driver.findElement(By.id("user-name"));
-        usernameField.sendKeys("performance_glitch_user");
+        usernameField.sendKeys("problem_user");
 
 //Login with the password   secret_sauce
         WebElement passwordField = driver.findElement(By.id("password"));
@@ -49,13 +47,16 @@ public class performance_glitch_user {
         System.out.println(expectedProductsTitlePage);
 
         if (productsTitle.equals(expectedProductsTitlePage)) {
-            System.out.println(expectedProductsTitlePage+" "+"this is the correct  Mmessage");
+            System.out.println(expectedProductsTitlePage + " " +" this is the correct massege ");
         }
         else {
-            System.out.println(expectedProductsTitlePage+" "+ "this is  not the correct Mmessage ");
+            System.out.println(expectedProductsTitlePage + " " +"this is  not the correct massege");
         }
+
 
 
     }
 }
+
+
 

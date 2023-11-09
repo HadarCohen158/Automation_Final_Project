@@ -1,18 +1,16 @@
 package tests.loginTests.negativeTests;
 
-import com.github.javafaker.Faker;
 //import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class username_correct_and_password_incorrect {
+public class UsernameCorrectAndPasswordIncorrect {
 
 
     public static void main(String[] args) throws InterruptedException {
 
-        Faker fakeDataGenerator = new Faker();
 // הגדרת הכרום כדפדפן
        // WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver();

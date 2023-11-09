@@ -11,7 +11,6 @@ public class ValidateLockedOutUser {
 
     public static void main(String[] args) throws InterruptedException {
 
-        Faker fakeDataGenerator = new Faker();
 // הגדרת הכרום כדפדפן
         //WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver();

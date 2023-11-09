@@ -1,19 +1,19 @@
 package tests.loginTests.negativeTests;
 
 import com.github.javafaker.Faker;
-import io.github.bonigarcia.wdm.WebDriverManager;
+//import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class username_incorrect_password_incorrect {
+public class UsernameCorrectPasswordEmpty {
+
 
 
 
     public static void main(String[] args) throws InterruptedException {
 
-        Faker fakeDataGenerator = new Faker();
 // הגדרת הכרום כדפדפן
         //WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver();
@@ -22,11 +22,11 @@ public class username_incorrect_password_incorrect {
 
 //Login with the user standard_user
         WebElement usernameField = driver.findElement(By.id("user-name"));
-        usernameField.sendKeys("locked_out_user_incorrect");
+        usernameField.sendKeys("standard_user");
 
 //Login with the password   secret_sauce
         WebElement passwordField = driver.findElement(By.id("password"));
-        passwordField.sendKeys("secret_sauce_incorrectr");
+        passwordField.sendKeys("");
 
         driver.findElement(By.cssSelector("[class=\"submit-button btn_action\"]")).click();
 
@@ -35,19 +35,20 @@ public class username_incorrect_password_incorrect {
 
         String  errorbutton =driver.findElement(By.cssSelector("[class=\"error-message-container error\"]")).getText();
 
-        String expectedErrorButtonPage = "Epic sadface: Username and password do not match any user in this service";
+        String expectedErrorButtonPage = "Epic sadface: Password is required" ;
         System.out.println( expectedErrorButtonPage);
 
         if (errorbutton.equals(expectedErrorButtonPage)) {
-            System.out.println(expectedErrorButtonPage+" "+ " the messages is correct  ");
+            System.out.println( expectedErrorButtonPage+" "+"the messages is correct  ");
         }
         else {
-            System.out.println(expectedErrorButtonPage+" "+"the messages is  not correct ");
+            System.out.println(expectedErrorButtonPage+" "+ "the messages is  not correct ");
         }
 
 
 
     }
+
+
+
 }
-
-
