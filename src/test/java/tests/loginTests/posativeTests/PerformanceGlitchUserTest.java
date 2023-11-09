@@ -1,12 +1,11 @@
 package tests.loginTests.posativeTests;
 
-import com.github.javafaker.Faker;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class PerformanceGlitchUser {
+public class PerformanceGlitchUserTest {
 
     public static void main(String[] args) throws InterruptedException {
 

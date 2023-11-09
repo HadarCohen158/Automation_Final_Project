@@ -1,15 +1,12 @@
 package tests.loginTests.negativeTests;
 
-import com.github.javafaker.Faker;
 //import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class UsernameEmptyPasswordCorrect {
-
-
+public class UsernameCorrectAndPasswordIncorrectTest {
 
 
     public static void main(String[] args) throws InterruptedException {
@@ -22,11 +19,11 @@ public class UsernameEmptyPasswordCorrect {
 
 //Login with the user standard_user
         WebElement usernameField = driver.findElement(By.id("user-name"));
-        usernameField.sendKeys("");
+        usernameField.sendKeys("standard_user");
 
 //Login with the password   secret_sauce
         WebElement passwordField = driver.findElement(By.id("password"));
-        passwordField.sendKeys("secret_sauce");
+        passwordField.sendKeys("secret_sauce_incorect");
 
         driver.findElement(By.cssSelector("[class=\"submit-button btn_action\"]")).click();
 
@@ -35,7 +32,7 @@ public class UsernameEmptyPasswordCorrect {
 
         String  errorbutton =driver.findElement(By.cssSelector("[class=\"error-message-container error\"]")).getText();
 
-        String expectedErrorButtonPage = "Epic sadface: Username is required";
+        String expectedErrorButtonPage = "Epic sadface: Username and password do not match any user in this service" ;
         System.out.println( expectedErrorButtonPage);
 
         if (errorbutton.equals(expectedErrorButtonPage)) {
@@ -48,6 +45,4 @@ public class UsernameEmptyPasswordCorrect {
 
 
     }
-
-
 }

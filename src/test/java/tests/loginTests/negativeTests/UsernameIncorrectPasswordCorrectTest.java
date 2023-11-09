@@ -1,29 +1,29 @@
 package tests.loginTests.negativeTests;
 
-//import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class UsernameCorrectAndPasswordIncorrect {
+public class UsernameIncorrectPasswordCorrectTest {
+
 
 
     public static void main(String[] args) throws InterruptedException {
 
 // הגדרת הכרום כדפדפן
-       // WebDriverManager.chromedriver().setup();
+        //WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get("https://www.saucedemo.com");
 
 //Login with the user standard_user
         WebElement usernameField = driver.findElement(By.id("user-name"));
-        usernameField.sendKeys("standard_user");
+        usernameField.sendKeys("standard_user_incorect");
 
 //Login with the password   secret_sauce
         WebElement passwordField = driver.findElement(By.id("password"));
-        passwordField.sendKeys("secret_sauce_incorect");
+        passwordField.sendKeys("secret_sauce");
 
         driver.findElement(By.cssSelector("[class=\"submit-button btn_action\"]")).click();
 
@@ -32,17 +32,18 @@ public class UsernameCorrectAndPasswordIncorrect {
 
         String  errorbutton =driver.findElement(By.cssSelector("[class=\"error-message-container error\"]")).getText();
 
-        String expectedErrorButtonPage = "Epic sadface: Username and password do not match any user in this service" ;
+        String expectedErrorButtonPage = "Epic sadface: Sorry, this user has been locked out.";
         System.out.println( expectedErrorButtonPage);
 
         if (errorbutton.equals(expectedErrorButtonPage)) {
-            System.out.println( expectedErrorButtonPage+" "+"the messages is correct  ");
+            System.out.println( expectedErrorButtonPage+ " "+" the messages is correct  ");
         }
         else {
-            System.out.println(expectedErrorButtonPage+" "+"the messages is  not correct ");
+            System.out.println(expectedErrorButtonPage+ " "+"the messages is  not correct ");
         }
 
 
 
     }
 }
+
